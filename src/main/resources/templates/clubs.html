@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clubes</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <h1>Clubs</h1>
+
+    <h5 th:if="${clubs.size() > 0}">
+        Aquí tienes una tabla con todos los clubs y las acciones disponibles
+    </h5>
+    <p th:unless="${clubs.size() > 0}">
+        No hay clubs registrados en el sistema
+    </p>
+
+    <table class="table table-striped" th:if="${clubs.size() > 0}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Año Fundación</th>
+            <th>Títulos</th>
+            <th>Facturación</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="club : ${clubs}">
+            <td th:text="${club.idClub}">1</td>
+            <td th:text="${club.name}">FC Barcelona</td>
+            <td th:text="${club.foundation}">1899</td>
+            <td th:text="${club.titles}">31</td>
+            <td th:text="${club.billing}">700.5</td>
+
+            <td>
+                <a th:href="@{/clubs/{id}(id=${club.idClub})}"
+                   class="btn btn-info btn-sm">Detalles</a>
+
+                <a th:href="@{/clubs/editar/{id}(id=${club.idClub})}"
+                   class="btn btn-warning btn-sm">Editar</a>
+
+                <a th:href="@{/clubs/borrar/{id}(id=${club.idClub})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('¿Estás seguro de borrar este club?')">
+                    Borrar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/clubs/nuevo}" class="mt-5 btn btn-primary">
+        Agregar Nuevo Club
+    </a>
+
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>
