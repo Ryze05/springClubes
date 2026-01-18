@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Club</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+
+
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center" style="width: 18rem;">
+            <div class="card text-center">
+                <!-- Foto -->
+                <img th:src="@{/fotos/{nombreImagen}(nombreImagen=${club.picture})}"
+                     alt="Foto"
+                     class="img-fluid rounded mb-4"
+                     style="max-height: 250px;">
+
+                <div class="card-body">
+                    <h1 class="card-title text-info mb-4" th:text="${club.name}">Nombre</h1>
+
+                    <p class="fs-5">
+                        <span class="fw-bold">Año fundación:</span>
+                        <span th:text="${club.foundation}">Fundación</span>
+                    </p>
+
+                    <p class="fs-5">
+                        <span class="fw-bold">Títulos:</span>
+                        <span th:text="${club.titles}">0</span>
+                    </p>
+
+                    <p class="fs-5">
+                        <span class="fw-bold">Facturación:</span>
+                        <span th:text="${club.billing}">0</span>
+                    </p>
+
+                    <hr class="my-4">
+
+                    <a th:href="@{/clubes/editar/{id}(id=${club.idClub})}"
+                       class="btn btn-info bt-sm">Editar</a>
+
+                    <a th:href="@{/clubes/borrar/{id}(id=${club.idClub})}"
+                       class="btn btn-info bt-sm"
+                       onclick="return confirm('¿Estás seguro de borrar esta planta?')">Borrar</a>
+                </div>
+            </div>
+            <p class="mt-3"><a th:href="@{/clubes}">Volver al listado</a></p>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

@@ -9,16 +9,16 @@
 <body>
 
 <div class="container mt-5">
-    <h1>Clubs</h1>
+    <h1>Clubes</h1>
 
-    <h5 th:if="${clubs.size() > 0}">
-        Aquí tienes una tabla con todos los clubs y las acciones disponibles
+    <h5 th:if="${clubes.size() > 0}">
+        Aquí tienes una tabla con todos los clubes y las acciones disponibles
     </h5>
-    <p th:unless="${clubs.size() > 0}">
-        No hay clubs registrados en el sistema
+    <p th:unless="${clubes.size() > 0}">
+        No hay clubes registrados en el sistema
     </p>
 
-    <table class="table table-striped" th:if="${clubs.size() > 0}">
+    <table class="table table-striped" th:if="${clubes.size() > 0}">
         <thead>
         <tr>
             <th>ID</th>
@@ -30,7 +30,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="club : ${clubs}">
+        <tr th:each="club : ${clubes}">
             <td th:text="${club.idClub}">1</td>
             <td th:text="${club.name}">FC Barcelona</td>
             <td th:text="${club.foundation}">1899</td>
@@ -38,13 +38,13 @@
             <td th:text="${club.billing}">700.5</td>
 
             <td>
-                <a th:href="@{/clubs/{id}(id=${club.idClub})}"
+                <a th:href="@{/clubes/{id}(id=${club.idClub})}"
                    class="btn btn-info btn-sm">Detalles</a>
 
-                <a th:href="@{/clubs/editar/{id}(id=${club.idClub})}"
+                <a th:href="@{/clubes/editar/{id}(id=${club.idClub})}"
                    class="btn btn-warning btn-sm">Editar</a>
 
-                <a th:href="@{/clubs/borrar/{id}(id=${club.idClub})}"
+                <a th:href="@{/clubes/borrar/{id}(id=${club.idClub})}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('¿Estás seguro de borrar este club?')">
                     Borrar
@@ -54,7 +54,7 @@
         </tbody>
     </table>
 
-    <a th:href="@{/clubs/nuevo}" class="mt-5 btn btn-primary">
+    <a th:href="@{/clubes/nuevo}" class="mt-5 btn btn-primary">
         Agregar Nuevo Club
     </a>
 
